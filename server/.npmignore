@@ -1,0 +1,10 @@
+coverage/
+scripts/
+src/
+.config.js
+.eslintrc.js
+.eslintignore
+.tsconfig.json
+tsconfig.json
+jest.config.js
+babel.config.js
