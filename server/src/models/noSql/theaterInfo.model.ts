@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { ITheaterInfo } from '../types/models/TheaterInfo';
+import { ITheaterInfo } from '../../types/models/TheaterInfo';
 
 const TheaterInfoSchema: Schema = new Schema({
   name: { type: String, required: true, unique: true },

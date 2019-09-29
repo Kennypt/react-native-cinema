@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "mount:mongo": "docker-compose -f ./docker/docker-compose-mongo-db-cinema.yml up -d",
+    "mount:redis": "docker-compose -f ./docker/docker-compose-redis-db-cinema.yml up -d",
     "build": "babel src --extensions '.ts' --ignore 'src/**/*.tests.ts' -d lib/",
     "crawler:theaters": "babel-node ./lib/crawler/theaters/test.js",
+    "crawler:movies": "babel-node ./lib/crawler/movies/test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ricardo Pinheiro",
@@ -51,6 +53,8 @@
     "fastify-log": "^1.2.0",
     "fastify-swagger": "^2.4.0",
     "helmet": "^3.21.1",
+    "ioredis": "^4.14.1",
+    "ioredis-lock": "^4.0.0",
     "lodash": "^4.17.15",
     "mobile-detect": "^1.4.4",
     "moment": "^2.24.0",
@@ -60,6 +64,7 @@
     "rc": "^1.2.8",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
+    "rss-parser": "^3.7.2",
     "winston": "^3.2.1",
     "xss-clean": "^0.1.1"
   }

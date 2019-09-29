@@ -1,7 +1,8 @@
 import Crawler from 'crawler';
 import $ from 'cheerio';
 
-import TheaterLocation from '../../models/theaterLocation.model';
+import LocationPageParser from './parsers/LocationPage';
+import TheaterLocation from '../../models/noSql/theaterLocation.model';
 import CountryCodes from '../../enums/countries';
 
 // TODO: 1X MÊS
@@ -25,12 +26,14 @@ export default () => {
       if (error) {
         console.log(error);
       } else {
-        const regions = [];
+        const locationPageData = new LocationPageParser(res.$('body'));
+        const regions = locationPageData.getRegions();
 
-        res.$('h3').each((index, value) => regions.push({
-          name: $(value).text(),
-          theaters: [],
-        }));
+        if (!regions.length) {
+          // TODO: Save status
+          console.log('ERROR - Not able to crawl locations');
+          return done();
+        }
 
         let regionCounter = -1;
         const currentTheaterKeys = [];
@@ -54,12 +57,6 @@ export default () => {
           regions[regionCounter].theaters = regionTheaters;
         });
 
-        if (!regions.length) {
-          // TODO: Save status
-          console.log('ERROR - Not able to crawl locations');
-          return done();
-        }
-
         const locations = [
           {
             name: 'Angola',
@@ -80,7 +77,7 @@ export default () => {
 
         try {
           locations.forEach(async location => {
-            console.log('_________save: ', location.code);
+            console.log('_________save location: ', location.code);
             await TheaterLocation.findOneAndUpdate(
               {
                 code: location.code

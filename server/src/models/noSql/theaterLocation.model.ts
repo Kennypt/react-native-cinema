@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { ITheaterLocation } from '../types/models/TheaterLocation';
-import CountryCodes from '../enums/countries';
+import { ITheaterLocation } from '../../types/models/TheaterLocation';
+import CountryCodes from '../../enums/countries';
 
 const TheaterLocationSchema: Schema = new Schema({
   name: { type: String, required: true, unique: true, default: 'Portugal' },

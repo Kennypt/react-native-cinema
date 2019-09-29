@@ -1,1 +1,1 @@
-import '../adapters/noSql/connect';
+import '../adapters/noSql';

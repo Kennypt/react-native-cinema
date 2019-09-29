@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { ICron } from '../types/models/Cron';
+import { ICron } from '../../types/models/Cron';
 
 const CronSchema: Schema = new Schema({
   name: { type: String, required: true, unique: true },
