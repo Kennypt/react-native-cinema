@@ -9,6 +9,7 @@
     "build": "babel src --extensions '.ts' --ignore 'src/**/*.tests.ts' -d lib/",
     "crawler:theaters": "babel-node ./lib/crawler/theaters/test.js",
     "crawler:movies": "babel-node ./lib/crawler/movies/test.js",
+    "start": "babel-node ./lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ricardo Pinheiro",
@@ -52,13 +53,19 @@
     "cors": "^2.8.5",
     "crawler": "^1.2.1",
     "cron": "^1.7.2",
+    "dns-prefetch-control": "^0.3.0",
     "fastify": "^2.8.0",
+    "fastify-caching": "^5.0.0",
     "fastify-gql": "^1.5.0",
+    "fastify-helmet": "^3.0.1",
     "fastify-log": "^1.2.0",
     "fastify-swagger": "^2.4.0",
+    "frameguard": "^3.1.0",
     "graphql-tools": "^4.0.5",
-    "helmet": "^3.21.1",
+    "hide-powered-by": "^1.1.0",
+    "hsts": "^2.2.0",
     "http-status-codes": "^1.3.2",
+    "ienoopen": "^1.1.0",
     "ioredis": "^4.14.1",
     "ioredis-lock": "^4.0.0",
     "lodash": "^4.17.15",
@@ -73,6 +80,7 @@
     "rss-parser": "^3.7.2",
     "terminal-link": "^2.0.0",
     "winston": "^3.2.1",
+    "x-xss-protection": "^1.3.0",
     "xss-clean": "^0.1.1"
   }
 }

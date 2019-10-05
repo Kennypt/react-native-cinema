@@ -4,23 +4,23 @@ import terminalLink from 'terminal-link';
 import config from './config';
 import App from './App';
 
-const port = parseInt(config.PORT, 10);
+const port = parseInt(config.port, 10);
 
 
 const start = async () => {
   try {
     const app = new App();
-    app.server.keepAliveTimeout = config.TIMEOUT;
+    app.instance.keepAliveTimeout = config.timeout;
 
-    await app.server.listen(port);
+    await app.instance.listen(port);
 
-    const link = `https://localhost:${app.server.server.address().port}${config.urlBasePath}`;
+    const link = `https://localhost:${app.instance.server.address().port}${config.urlBasePath}`;
     console.log(
       `[${new Date().toISOString()}]`,
       chalk.cyanBright(`Download App Web is running: 🌎 ${terminalLink(link, link)}`)
     );
 
-    app.server.on('error', error => {
+    app.instance.server.on('error', error => {
       if (error.syscall !== 'listen') {
         throw error;
       }

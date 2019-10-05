@@ -1,43 +1,56 @@
 import compression from 'compression';
-import Fastify from 'fastify';
+import fastify from 'fastify';
 import GQL from 'fastify-gql';
+import helmet from 'fastify-helmet';
 import { makeExecutableSchema } from 'graphql-tools';
 import cors from 'cors';
+import dnsPrefetchControl from 'dns-prefetch-control';
+import frameguard from 'frameguard';
+import hidePoweredBy from 'hide-powered-by';
+import hsts from 'hsts';
+import ienoopen from 'ienoopen';
+import xXssProtection from 'x-xss-protection';
 
 import './boot';
 
-import securityMiddleware from './middlewares/security';
 import errorHandlerMiddleware from './middlewares/errorHandler';
 // import loggerMiddleware from './middlewares/logger';
 
 // import mainRouter from './routes';
 
 class App {
-  public readonly server;
+  public readonly instance;
 
   constructor() {
-    this.server = Fastify();
+    this.instance = fastify();
     this.setUp();
     this.addMiddleware();
     this.addRoutes();
     this.addSchemas();
 
     // Added after everything is loaded into the app
-    this.server.use(errorHandlerMiddleware);
+    this.instance.use(errorHandlerMiddleware);
   }
 
   setUp() {
-    this.server.set('etag', false);
-    this.server.set('strict routing', true);
+    // this.server.set('etag', false);
+    // this.server.set('strict routing', true);
 
     // this.server.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
   }
 
   addMiddleware() {
     // this.server.use(loggerMiddleware());
-    this.server.use(securityMiddleware());
-    this.server.use(compression());
-    this.server.use(cors());
+    this.instance.use(compression());
+    this.instance.use(cors());
+    this.instance.use(dnsPrefetchControl());
+    this.instance.use(frameguard());
+    this.instance.use(hidePoweredBy());
+    this.instance.use(hsts());
+    this.instance.use(ienoopen());
+    this.instance.use(xXssProtection());
+
+    this.instance.register(helmet);
   }
 
   addSchemas() {
@@ -53,7 +66,7 @@ class App {
       }
     }
 
-    this.server.register(GQL, {
+    this.instance.register(GQL, {
       schema: makeExecutableSchema({ typeDefs, resolvers })
     });
   }
