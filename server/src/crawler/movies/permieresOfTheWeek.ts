@@ -1,11 +1,12 @@
 import Parser from 'rss-parser';
 
 let parser = new Parser();
+import config from '../../config';
 
 // 1x WEEK - TUESDAY 2am
 
 export default async () => {
-  const feed = await parser.parseURL('https://filmspot.pt/feed/estreias/');
+  const feed = await parser.parseURL(`${config.crawlers.filmspot.basePath}/feed/estreias/`);
   let pubDate;
 
   const movieIds = feed.items.map(item => {

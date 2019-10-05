@@ -8,7 +8,7 @@ const TheaterInfoSchema: Schema = new Schema({
   uri: { type: String, required: true },
   mapsUri: { type: String, required: true },
   nowPlayingMovies: {
-    movieId: { type: String },
+    movieId: { type: Number },
     theaterSessions: [{
       roomNumber: { type: String },
       roomSessions: [{

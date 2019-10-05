@@ -4,7 +4,7 @@ import { IInExhibition } from '../../types/models/InExhibition';
 
 const InExhibitionSchema: Schema = new Schema({
   key: { type: String, required: true, unique: true },
-  list: [ { type: String } ],
+  list: [ { type: Number } ],
 }, {
   timestamps: true,
 });

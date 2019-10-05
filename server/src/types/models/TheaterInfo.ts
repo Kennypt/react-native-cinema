@@ -14,7 +14,7 @@ export interface ITheaterInfo extends Document {
   uri: string;
   mapsUri: string;
   nowPlayingMovies: {
-    movieId: string;
+    movieId: number;
     theaterSessions: [{
       roomNumber: string;
       roomSessions: [{

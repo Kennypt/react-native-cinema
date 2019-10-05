@@ -109,7 +109,7 @@ export default class InfoPageParser {
 
         if (hasRoom) {
           nowPlayingMovies.push({
-            movieId,
+            movieId: parseInt(movieId, 10),
             theaterSessions,
           });
         }
