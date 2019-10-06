@@ -2,7 +2,6 @@ import compression from 'compression';
 import fastify from 'fastify';
 import GQL from 'fastify-gql';
 import helmet from 'fastify-helmet';
-import { makeExecutableSchema } from 'graphql-tools';
 import cors from 'cors';
 import dnsPrefetchControl from 'dns-prefetch-control';
 import frameguard from 'frameguard';
@@ -14,7 +13,8 @@ import xXssProtection from 'x-xss-protection';
 import './boot';
 
 import errorHandlerMiddleware from './middlewares/errorHandler';
-import schema from './routes/schemas';
+import schema from './graphql/schemas';
+import config from './config';
 // import loggerMiddleware from './middlewares/logger';
 
 // import mainRouter from './routes';
@@ -58,9 +58,9 @@ class App {
   addSchemas() {
     this.instance.register(GQL, {
       schema,
-      graphiql: 'playground', // TODO: Dev only
+      // graphiql: 'playground', // TODO: Dev only
       routes: true,
-      prefix: '/my-cinema/',
+      prefix: config.urlBasePath,
     });
   }
 

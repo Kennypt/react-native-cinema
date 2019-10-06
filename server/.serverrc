@@ -1,7 +1,7 @@
 {
   "port": "3002",
   "timeout": "30000",
-  "urlBasePath": "/my-cinema",
+  "urlBasePath": "/my-cinema/",
   "mongodb": {
     "uri": "mongodb://localhost:27018/db-data"
   },

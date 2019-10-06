@@ -15,8 +15,9 @@ export const getMovieById = async ({
     // TODO: Move to a thread
     // TODO: Missing where the movie is available if in exhibition;
     const updatedAt = moment.utc(movieInfo.updatedAt);
-    if (updatedAt.isBefore(moment.utc().subtract('2d'))) {
+    if (updatedAt.isBefore(moment.utc().subtract(2, 'd'))) {
       movieInfo = await getMovieInfoById(id, locale);
+      console.log('___update movie', id);
       await MovieInfoModel.findOneAndUpdate({
         id,
       },
@@ -31,6 +32,7 @@ export const getMovieById = async ({
     movieInfo = await getMovieInfoById(id, locale);
     if (movieInfo) {
       // TODO: Move to a thread
+      console.log('___create movie', id);
       await MovieInfoModel.create(movieInfo, {
         setDefaultsOnInsert: true
       });
@@ -40,10 +42,12 @@ export const getMovieById = async ({
   return movieInfo;
 }
 
-export default (ids: Array<number>, locale?: Locales) => {
-  ids.forEach((id: number) => getMovieById({
-    id: `${id}`,
-  }, locale));
+export default async (ids: Array<number>, locale?: Locales) => {
+  return await Promise.all(
+    ids.map((id: number) => getMovieById({
+      id: `${id}`,
+    }, locale))
+  );
 }
 
 
