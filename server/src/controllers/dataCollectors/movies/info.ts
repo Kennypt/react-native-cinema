@@ -13,7 +13,7 @@ export const getMovieById = async ({
   let movieInfo = await MovieInfoModel.findOne({ id });
   if (movieInfo) {
     // TODO: Move to a thread
-    console.log('___', movieInfo.updatedAt);
+    // TODO: Missing where the movie is available if in exhibition;
     const updatedAt = moment.utc(movieInfo.updatedAt);
     if (updatedAt.isBefore(moment.utc().subtract('2d'))) {
       movieInfo = await getMovieInfoById(id, locale);

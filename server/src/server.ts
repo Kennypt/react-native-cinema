@@ -14,7 +14,7 @@ const start = async () => {
 
     await app.instance.listen(port);
 
-    const link = `http://localhost:${app.instance.server.address().port}${config.urlBasePath}`;
+    const link = `http://127.0.0.1:${app.instance.server.address().port}${config.urlBasePath}`;
     console.log(
       `[${new Date().toISOString()}]`,
       chalk.cyanBright(`Download App Web is running: 🌎 ${terminalLink(link, link)}`)

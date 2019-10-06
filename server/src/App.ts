@@ -30,7 +30,7 @@ class App {
     this.addSchemas();
 
     // Added after everything is loaded into the app
-    this.instance.use(errorHandlerMiddleware);
+    // this.instance.use(errorHandlerMiddleware);
   }
 
   setUp() {
@@ -58,9 +58,9 @@ class App {
   addSchemas() {
     this.instance.register(GQL, {
       schema,
-      graphiql: 'playground',
+      graphiql: 'playground', // TODO: Dev only
       routes: true,
-      // prefix: '/my-cinema/v1',
+      prefix: '/my-cinema/',
     });
   }
 
