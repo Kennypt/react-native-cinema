@@ -4,7 +4,7 @@ import LocationPageParser from './parsers/LocationPage';
 import config from '../../config';
 
 export default (document) => {
-  const locationPageData = new LocationPageParser(document.$('body'));
+  const locationPageData = new LocationPageParser(document);
   const regions = locationPageData.getRegions();
 
   if (!regions.length) {
@@ -29,7 +29,6 @@ export default (document) => {
         uri: `${config.crawlers.filmspot.basePath}${$(valueLi).find('a').attr('href')}`,
       });
     });
-
     regions[regionCounter].theaters = regionTheaters;
   });
 

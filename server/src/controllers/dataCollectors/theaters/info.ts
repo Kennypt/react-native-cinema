@@ -25,11 +25,11 @@ const cralwer = new Crawler({
  */
 const persistTheaterInfo = async (theaterInfo) => {
   try {
-    console.log('________save theater info:', theaterInfo.theaterName); //, JSON.stringify(theaterInfo, null, 2));
+    console.log('________save theater info:', theaterInfo.name); //, JSON.stringify(theaterInfo, null, 2));
 
     await TheaterInfo.findOneAndUpdate(
       {
-        name: theaterInfo.theaterName
+        name: theaterInfo.name
       },
       theaterInfo,
       {

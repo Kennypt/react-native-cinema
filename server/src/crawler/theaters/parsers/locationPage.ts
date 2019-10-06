@@ -10,7 +10,7 @@ export default class LocationPageParser {
   public getRegions() {
     const regions = [];
 
-    $(this.mainElem).find('h3').each((index, value) => regions.push({
+    this.mainElem.$('h3').each((index, value) => regions.push({
       name: $(value).text(),
       theaters: [],
     }));

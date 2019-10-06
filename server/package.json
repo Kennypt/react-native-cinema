@@ -7,8 +7,7 @@
     "mount:mongo": "docker-compose -f ./docker/docker-compose-mongo-db-cinema.yml up -d",
     "mount:redis": "docker-compose -f ./docker/docker-compose-redis-db-cinema.yml up -d",
     "build": "babel src --extensions '.ts' --ignore 'src/**/*.tests.ts' -d lib/",
-    "crawler:theaters": "babel-node ./lib/crawler/theaters/test.js",
-    "crawler:movies": "babel-node ./lib/crawler/movies/test.js",
+    "load:mongo": "babel-node ./lib/adapters/noSql/loader.js",
     "start": "babel-node ./lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

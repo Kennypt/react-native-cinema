@@ -59,6 +59,7 @@ const handleTheaterLocationData = async (error, res, done) => {
   if (error) {
     console.log(error);
   } else {
+    //console.log('>>>> res', res.$('h3'));
     const regions = parseLocationPage(res);
 
     if (!regions || !regions.length) {
@@ -93,6 +94,7 @@ const handleTheaterLocationData = async (error, res, done) => {
 }
 
 export default () => {
+  console.log('----', `${config.crawlers.filmspot.basePath}/ajax/novocartazsalas.php`);
   cralwer.queue([{
     uri: `${config.crawlers.filmspot.basePath}/ajax/novocartazsalas.php`,
     callback: handleTheaterLocationData,
