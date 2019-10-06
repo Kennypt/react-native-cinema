@@ -14,11 +14,18 @@ const start = async () => {
 
     await app.instance.listen(port);
 
-    const link = `https://localhost:${app.instance.server.address().port}${config.urlBasePath}`;
+    const link = `http://localhost:${app.instance.server.address().port}${config.urlBasePath}`;
     console.log(
       `[${new Date().toISOString()}]`,
       chalk.cyanBright(`Download App Web is running: 🌎 ${terminalLink(link, link)}`)
     );
+
+    /*await app.instance.ready();
+
+    const query = '{ movie(id: "574088") { id title } }'
+    const res = await app.instance.graphql(query)
+
+    console.log('>>>>>> res', res.data);*/
 
     app.instance.server.on('error', error => {
       if (error.syscall !== 'listen') {

@@ -33,7 +33,7 @@ export default class InfoPageParser {
     return {
       name: $(this.addressElem).find('[itemprop=name]').first().text(),
       street: $(this.addressElem).find('[itemprop=streetAddress]').first().text(),
-      postalCode: $(this.addressElem).find('[itemprop=postalCode]').first().text(),
+      postal_code: $(this.addressElem).find('[itemprop=postalCode]').first().text(),
       locality: $(this.addressElem).find('[itemprop=addressLocality]').first().text(),
       region: $(this.addressElem).find('[itemprop=addressRegion]').first().text(),
       country: $(this.addressElem).find('[itemprop=addressCountry]').first().text(),
@@ -54,8 +54,8 @@ export default class InfoPageParser {
 
       sessionSchedule.push({
         time,
-        infoAbbr,
-        infoDesc,
+        info_abbr: infoAbbr,
+        info_desc: infoDesc,
       });
     });
     return sessionSchedule;
@@ -73,8 +73,8 @@ export default class InfoPageParser {
 
       roomSessions.push({
         day,
-        dayOfWeek,
-        sessionSchedule: this.getSessionSchedule(line),
+        day_of_week: dayOfWeek,
+        session_schedule: this.getSessionSchedule(line),
       });
     });
     return roomSessions;
@@ -96,21 +96,21 @@ export default class InfoPageParser {
         $(sessions).each((sessionIndex, session) => {
           const roomNumber = $(session).find('th.sala').first().text();
           const theaterSession = {
-            roomNumber,
-            roomSessions: [],
+            room_number: roomNumber,
+            room_sessions: [],
           };
 
           if (roomNumber) {
             hasRoom = true;
-            theaterSession.roomSessions = this.getRoomSessions(session);;
+            theaterSession.room_sessions = this.getRoomSessions(session);;
             theaterSessions.push(theaterSession);
           }
         });
 
         if (hasRoom) {
           nowPlayingMovies.push({
-            movieId: parseInt(movieId, 10),
-            theaterSessions,
+            movie_id: parseInt(movieId, 10),
+            theater_sessions: theaterSessions,
           });
         }
       }
@@ -205,12 +205,12 @@ export default class InfoPageParser {
 
     return {
       values: types,
-      daysOfWeek,
-      startTime,
-      endTime,
-      isValidOnHolidays,
-      isAddition,
-      isExtras,
+      days_of_week: daysOfWeek,
+      start_time: startTime,
+      end_time: endTime,
+      is_valid_on_holidays: isValidOnHolidays,
+      is_addition: isAddition,
+      is_extras: isExtras,
     };
   }
 
@@ -255,7 +255,7 @@ export default class InfoPageParser {
         ticketPrices.default.push({
           types: this.getPriceTypes([ticketCleanText, newPriceDesc]),
           description: ticketCleanText,
-          priceDesc: newPriceDesc,
+          price_desc: newPriceDesc,
           price: parseFloat(this.ticketPricesPlainTextArray[index + 1].replace(',', '.').match(/(\d+\.\d{1,2})/)[0]),
         });
         return;
@@ -271,7 +271,7 @@ export default class InfoPageParser {
         ticketPrices.default.push({
           types: this.getPriceTypes([newDesc, newPriceDesc]),
           description: newDesc,
-          priceDesc: newPriceDesc,
+          price_desc: newPriceDesc,
           price: parseFloat(newPriceDesc),
         });
         return;
@@ -309,7 +309,7 @@ export default class InfoPageParser {
           types: this.getPriceTypes([desc, priceDesc, ticketSpecialType]),
           description: desc,
           price: priceVal || 0,
-          priceDesc: priceDesc || '',
+          price_desc: priceDesc || '',
         });
         return;
       }
@@ -318,7 +318,7 @@ export default class InfoPageParser {
         types: this.getPriceTypes([desc, priceDesc]),
         description: desc,
         price: priceVal || 0,
-        priceDesc: priceDesc || '',
+        price_desc: priceDesc || '',
       });
 
     });

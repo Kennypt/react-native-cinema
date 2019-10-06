@@ -4,15 +4,21 @@ import { getMovieInfoById } from '../../../upstreams/tmdb/movies'
 import Locales from '../../../enums/locales';
 import MovieInfoModel from '../../../models/noSql/movieInfo.model';
 
-export const getMovieById = async (movieId: number, locale: Locales = Locales.PT_PT) => {
-  let movieInfo = await MovieInfoModel.findById(`${movieId}`);
+export const getMovieById = async ({
+  id,
+}: {
+  id: string,
+}, locale: Locales = Locales.PT_PT) => {
+  console.log('____constrollers > dataCollectors > getMovieById >', id);
+  let movieInfo = await MovieInfoModel.findOne({ id });
   if (movieInfo) {
     // TODO: Move to a thread
-    const updatedAt = moment.utc(movieInfo.updatedAt.$date);
+    console.log('___', movieInfo.updatedAt);
+    const updatedAt = moment.utc(movieInfo.updatedAt);
     if (updatedAt.isBefore(moment.utc().subtract('2d'))) {
-      movieInfo = await getMovieInfoById(`${movieId}`, locale);
-      await MovieInfoModel.findByIdAndUpdate({
-        _id: `${movieId}`,
+      movieInfo = await getMovieInfoById(id, locale);
+      await MovieInfoModel.findOneAndUpdate({
+        id,
       },
       movieInfo,
       {
@@ -22,10 +28,9 @@ export const getMovieById = async (movieId: number, locale: Locales = Locales.PT
       });
     }
   } else {
-    movieInfo = await getMovieInfoById(`${movieId}`, locale);
+    movieInfo = await getMovieInfoById(id, locale);
     if (movieInfo) {
       // TODO: Move to a thread
-      movieInfo._id = `${movieInfo.id}`;
       await MovieInfoModel.create(movieInfo, {
         setDefaultsOnInsert: true
       });
@@ -35,8 +40,10 @@ export const getMovieById = async (movieId: number, locale: Locales = Locales.PT
   return movieInfo;
 }
 
-export default (movieIds: Array<number>, locale?: Locales) => {
-  movieIds.forEach((movieId: number) => getMovieById(movieId, locale));
+export default (ids: Array<number>, locale?: Locales) => {
+  ids.forEach((id: number) => getMovieById({
+    id: `${id}`,
+  }, locale));
 }
 
 

@@ -5,12 +5,12 @@ export default (uri: string) => (document) => {
   return {
     name: theaterInfoData.getName(),
     uri: uri,
-    mapsUri: theaterInfoData.getAddressMapsLink(),
-    phoneNumber: theaterInfoData.getPhoneNumber(),
-    nowPlayingMovies: theaterInfoData.getNowPlayingMovies(),
-    ticketPrices: theaterInfoData.getTicketPrices(),
-    has3D: theaterInfoData.has3D(),
-    hasImax: theaterInfoData.hasImax(),
+    maps_uri: theaterInfoData.getAddressMapsLink(),
+    phone_number: theaterInfoData.getPhoneNumber(),
+    now_playing_movies: theaterInfoData.getNowPlayingMovies(),
+    ticket_prices: theaterInfoData.getTicketPrices(),
+    has_3d: theaterInfoData.has3D(),
+    has_imax: theaterInfoData.hasImax(),
     address: theaterInfoData.getAddressData(),
   };
 };

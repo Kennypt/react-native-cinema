@@ -14,6 +14,7 @@ import xXssProtection from 'x-xss-protection';
 import './boot';
 
 import errorHandlerMiddleware from './middlewares/errorHandler';
+import schema from './routes/schemas';
 // import loggerMiddleware from './middlewares/logger';
 
 // import mainRouter from './routes';
@@ -22,7 +23,7 @@ class App {
   public readonly instance;
 
   constructor() {
-    this.instance = fastify();
+    this.instance = fastify({ logger: true });
     this.setUp();
     this.addMiddleware();
     this.addRoutes();
@@ -41,6 +42,7 @@ class App {
 
   addMiddleware() {
     // this.server.use(loggerMiddleware());
+
     this.instance.use(compression());
     this.instance.use(cors());
     this.instance.use(dnsPrefetchControl());
@@ -54,20 +56,11 @@ class App {
   }
 
   addSchemas() {
-    const typeDefs = `
-      type Query {
-        add(x: Int, y: Int): Int
-      }
-    `
-
-    const resolvers = {
-      Query: {
-        add: async (_, { x, y }) => x + y
-      }
-    }
-
     this.instance.register(GQL, {
-      schema: makeExecutableSchema({ typeDefs, resolvers })
+      schema,
+      graphiql: 'playground',
+      routes: true,
+      // prefix: '/my-cinema/v1',
     });
   }
 

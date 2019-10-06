@@ -5,44 +5,44 @@ export interface ITheaterInfo extends Document {
   address: {
     name: string;
     street: string;
-    postalCode: string;
+    postal_code: string;
     locality: string;
     region: string;
     country: string;
   };
-  phoneNumber?: string;
+  phone_number?: string;
   uri: string;
-  mapsUri: string;
-  nowPlayingMovies: {
-    movieId: number;
-    theaterSessions: [{
-      roomNumber: string;
-      roomSessions: [{
+  maps_uri: string;
+  now_playing_movies: {
+    movie_id: number;
+    theater_sessions: [{
+      room_number: string;
+      room_sessions: [{
         day: string;
-        dayOfWeek: string;
-        sessionSchedule: [{
+        day_of_week: string;
+        session_schedule: [{
           time: string;
-          infoAbbr?: string;
-          infoDesc?: string;
+          info_abbr?: string;
+          info_desc?: string;
         }];
       }];
     }];
   };
-  has3D?: boolean,
-  hasImax?: boolean,
-  ticketPrices: {
+  has_3d?: boolean,
+  has_imax?: boolean,
+  ticket_prices: {
     default: [{
       description: string;
       types?: [{
         values?: [string],
-        daysOfWeek?: [string],
-        startTime?: string,
-        endTyme?: string,
-        isValidOnHolidays?: boolean,
-        isAddition?: boolean,
-        isExtras?: boolean,
+        days_of_week?: [string],
+        start_time?: string,
+        end_time?: string,
+        is_valid_on_holidays?: boolean,
+        is_addition?: boolean,
+        is_extras?: boolean,
       }],
-      priceDesc: string;
+      price_desc: string;
       price: number;
     }];
     special?: [{
@@ -50,14 +50,14 @@ export interface ITheaterInfo extends Document {
       description: string;
       types?: [{
         values?: [string],
-        daysOfWeek?: [string],
-        startTime?: string,
-        endTyme?: string,
-        isValidOnHolidays?: boolean,
-        isAddition?: boolean,
-        isExtras?: boolean,
+        days_of_week?: [string],
+        start_time?: string,
+        end_time?: string,
+        is_valid_on_holidays?: boolean,
+        is_addition?: boolean,
+        is_extras?: boolean,
       }],
-      priceDesc: string;
+      price_desc: string;
       price: number;
     }];
     extras?: [string];
