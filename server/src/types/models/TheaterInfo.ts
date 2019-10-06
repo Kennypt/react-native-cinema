@@ -13,7 +13,7 @@ export interface ITheaterInfo extends Document {
   phone_number?: string;
   uri: string;
   maps_uri: string;
-  now_playing_movies: {
+  now_playing_movies: [{
     movie_id: number;
     theater_sessions: [{
       room_number: string;
@@ -27,7 +27,7 @@ export interface ITheaterInfo extends Document {
         }];
       }];
     }];
-  };
+  }];
   has_3d?: boolean,
   has_imax?: boolean,
   ticket_prices: {

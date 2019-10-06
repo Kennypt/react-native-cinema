@@ -58,7 +58,7 @@ class App {
   addSchemas() {
     this.instance.register(GQL, {
       schema,
-      // graphiql: 'playground', // TODO: Dev only
+      graphiql: 'playground', // TODO: Dev only
       routes: true,
       prefix: config.urlBasePath,
     });

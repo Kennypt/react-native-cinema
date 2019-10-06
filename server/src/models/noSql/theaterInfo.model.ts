@@ -7,7 +7,7 @@ const TheaterInfoSchema: Schema = new Schema({
   phone_number: { type: String },
   uri: { type: String, required: true },
   maps_uri: { type: String, required: true },
-  now_playing_movies: {
+  now_playing_movies: [{
     movie_id: { type: Number },
     theater_sessions: [{
       room_number: { type: String },
@@ -21,7 +21,7 @@ const TheaterInfoSchema: Schema = new Schema({
         }],
       }],
     }],
-  },
+  }],
   has_3d: { type: Boolean },
   has_imax: { type: Boolean },
   address: {

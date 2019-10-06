@@ -55,6 +55,7 @@ const MovieInfoSchema: Schema = new Schema({
   video: { type: Boolean },
   vote_average: { type: Number },
   vote_count: { type: Number },
+  theater_ids: [{ type: String }],
 }, {
   timestamps: true,
 });

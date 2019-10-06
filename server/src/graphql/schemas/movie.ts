@@ -82,6 +82,9 @@ const movieType = new GraphQLObjectType({
     video: { type: GraphQLBoolean },
     vote_average: { type: GraphQLFloat },
     vote_count: { type: GraphQLInt },
+    theater_ids: {
+      type: new GraphQLList(GraphQLString),
+    },
   }),
 });
 
