@@ -4,6 +4,8 @@ import InExhibition from '../../../models/noSql/inExhibition.model';
 import parseExhibitionPage from '../../../crawler/movies/inExhibition';
 import config from '../../../config';
 import saveMoviesInfo from './info';
+import localesEnum from '../../../enums/locales';
+import CountryCodes from '../../../enums/countries';
 
 // TODO: 1X SEMANA?
 
@@ -22,15 +24,15 @@ const cralwer = new Crawler({
  *
  * @param moviesIdsList
  */
-const persistInExhibitionNow = async (moviesIdsList) => {
+const persistInExhibitionNow = async (moviesIdsList, countryCode) => {
   try {
     console.log('_________save in exhibition: ', moviesIdsList);
     await InExhibition.findOneAndUpdate(
       {
-        key: 'now',
+        country_code: countryCode,
       },
       {
-        key: 'now',
+        country_code: countryCode,
         list: moviesIdsList,
       },
       {
@@ -45,20 +47,22 @@ const persistInExhibitionNow = async (moviesIdsList) => {
   }
 };
 
-const handleInExhibitionData = async (error, res, done) => {
+const handleInExhibitionDataPT = async (error, res, done) => {
   if (error) {
     console.log(error);
   } else {
     const inExhibitionList = parseExhibitionPage(res);
-    await persistInExhibitionNow(inExhibitionList);
-    await saveMoviesInfo(inExhibitionList);
+    await persistInExhibitionNow(inExhibitionList, CountryCodes.PORTUGAL);
+    await saveMoviesInfo(inExhibitionList, localesEnum.PT_PT);
   }
   done();
 };
 
-export default () => {
-  cralwer.queue([{
-    uri: `${config.crawlers.filmspot.basePath}/ajax/novocartazfilmes.php`,
-    callback: handleInExhibitionData,
-  }]);
+export default (countryCode: CountryCodes = CountryCodes.PORTUGAL) => {
+  if (countryCode === CountryCodes.PORTUGAL) {
+    cralwer.queue([{
+      uri: `${config.crawlers.filmspot.basePath}/ajax/novocartazfilmes.php`,
+      callback: handleInExhibitionDataPT,
+    }]);
+  }
 }

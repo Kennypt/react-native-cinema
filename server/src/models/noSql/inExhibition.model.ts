@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 import { IInExhibition } from '../../types/models/InExhibition';
 
 const InExhibitionSchema: Schema = new Schema({
-  key: { type: String, required: true, unique: true },
+  country_code: { type: String, required: true, unique: true },
   list: [ { type: Number } ],
 }, {
   timestamps: true,

@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
 export interface IInExhibition extends Document {
-  key: string;
+  country_code: string;
   list: Array<number>;
 }

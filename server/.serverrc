@@ -25,5 +25,6 @@
   },
   "images": {
     "basePath": "https://image.tmdb.org/t/p/"
+    // https://image.tmdb.org/t/p/w1280/ApqMb4ObzgIPyyEe3koA3leg4jt.jpg
   }
 }
