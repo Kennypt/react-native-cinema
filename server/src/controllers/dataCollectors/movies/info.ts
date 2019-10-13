@@ -56,9 +56,15 @@ const loadMovieByIdFallback = (movieId, locale) => {
 
 export const getMovieById = async ({
   id,
+  locale = Locales.PT_PT,
+  posterSize = PosterSizes.ORIGINAL,
+  backdropSize = BackdropSizes.ORIGINAL
 }: {
-  id: string,
-  }, locale: Locales = Locales.PT_PT, posterSize?: PosterSizes = PosterSizes.ORIGINAL, backdropSize?: BackdropSizes = BackdropSizes.ORIGINAL) => {
+  id: string;
+  locale: Locales;
+  posterSize?: PosterSizes;
+  backdropSize?: BackdropSizes;
+}) => {
   let movieInfo;
   try {
     console.log('____constrollers > dataCollectors > getMovieById >', id);
@@ -125,7 +131,10 @@ export default async (ids: Array<number>, locale?: Locales, posterSize?: PosterS
   return await Promise.all(
     ids.map((id: number) => getMovieById({
       id: `${id}`,
-    }, locale, posterSize, backdropSize))
+      locale,
+      posterSize,
+      backdropSize
+    }))
   );
 }
 

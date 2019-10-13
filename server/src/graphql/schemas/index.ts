@@ -8,8 +8,12 @@ import {
 } from 'graphql';
 
 import movieSchema from './movie';
+import locationSchema from './location';
+import theaterSchema from './theater';
 import { getMovieById } from '../../controllers/dataCollectors/movies/info';
 import { getMoviesInExhibition } from '../../controllers/handlers/movies';
+import getLocations from '../../controllers/handlers/locations';
+import getTheaterById from '../../controllers/handlers/theaters';
 import BackdropSizes from '../../enums/backdropSizes';
 import PosterSizes from '../../enums/posterSizes';
 import Locales from '../../enums/locales';
@@ -56,6 +60,30 @@ const RootQuery = new GraphQLObjectType({
         locale: Locales;
       }) {
         return await getMoviesInExhibition(args)
+      }
+    },
+    location: {
+      type: locationSchema,
+      args: {
+        country_code: { type: GraphQLString },
+        name: { type: GraphQLString },
+      },
+      async resolve(parent, args: {
+        country_code: string;
+        name: string;
+      }) {
+        return await getLocations(args)
+      }
+    },
+    theater: {
+      type: theaterSchema,
+      args: {
+        name: { type: GraphQLString },
+      },
+      async resolve(parent, args: {
+        name: string;
+      }) {
+        return await getTheaterById(args)
       }
     },
   },
