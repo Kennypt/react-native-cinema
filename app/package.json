@@ -4,8 +4,23 @@
   "description": "Cinema App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-native start",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android"
   },
   "author": "Ricardo Pinheiro",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.10.2",
+    "react-native": "^0.61.2"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "0.0.5",
+    "@types/jest": "^24.0.18",
+    "@types/react": "^16.9.5",
+    "@types/react-native": "^0.60.19",
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "typescript": "^3.6.4"
+  }
 }
