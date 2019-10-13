@@ -39,7 +39,7 @@ const belongsToCollectionType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    poster_path: { type: GraphQLString },
+    poster_url: { type: GraphQLString },
     backdrop_path: { type: GraphQLString },
   }),
 });
@@ -63,7 +63,7 @@ const movieType = new GraphQLObjectType({
     original_title: { type: GraphQLString },
     overview: { type: GraphQLString },
     popularity: { type: GraphQLFloat },
-    poster_path: { type: GraphQLString },
+    poster_url: { type: GraphQLString },
     production_companies: {
       type: new GraphQLList(productionCompanyType)
     },

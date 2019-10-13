@@ -3,7 +3,8 @@ import mongoose, { Schema } from 'mongoose';
 import { IMovieInfo } from '../../types/models/MovieInfo';
 
 const MovieInfoSchema: Schema = new Schema({
-  id: { type: Number, required: true, unique: true },
+  id: { type: Number },
+  locale: { type: String },
   adult: { type: Boolean },
   backdrop_path: { type: String },
   belongs_to_collection: {
@@ -26,6 +27,7 @@ const MovieInfoSchema: Schema = new Schema({
   overview: { type: String },
   popularity: { type: Number },
   poster_path: { type: String },
+  poster_url: { type: String },
   production_companies: [
     {
       id: { type: Number },
