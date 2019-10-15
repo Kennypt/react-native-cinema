@@ -2,25 +2,45 @@
   "name": "cinema-app",
   "version": "1.0.0",
   "description": "Cinema App",
-  "main": "index.js",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "react-native start",
     "ios": "react-native run-ios",
-    "android": "react-native run-android"
+    "android": "react-native run-android",
+    "expo-start": "expo start",
+    "expo-android": "expo start --android",
+    "expo-ios": "expo start --ios",
+    "expo-web": "expo start --web",
+    "expo-eject": "expo eject"
   },
   "author": "Ricardo Pinheiro",
   "license": "ISC",
   "dependencies": {
-    "react": "^16.10.2",
-    "react-native": "^0.61.2"
+    "expo": "^35.0.0",
+    "expo-constants": "^7.0.0",
+    "expo-linear-gradient": "^7.0.1",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+    "react-native-collapsible": "^1.5.1",
+    "react-native-elements": "^1.2.6",
+    "react-native-parallax-scrollview": "^3.0.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-web": "^0.11.7",
+    "react-native-circular-progress": "^1.3.0",
+    "react-native-svg": "^9.11.1"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "0.0.5",
     "@types/jest": "^24.0.18",
-    "@types/react": "^16.9.5",
-    "@types/react-native": "^0.60.19",
+    "@types/react": "^16.8.3",
+    "@types/react-native": "^0.60.21",
+    "babel-preset-expo": "^7.0.0",
+    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^6.5.1",
+    "galio-framework": "^0.6.3",
     "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
     "typescript": "^3.6.4"
   }
 }
