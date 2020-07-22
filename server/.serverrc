@@ -19,8 +19,8 @@
   "upstreams": {
     "tmdb": {
       "basePath": "https://api.themoviedb.org/3",
-      "keyV3": "756e16166d125f993634352c8f890c65",
-      "keyV4": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NTZlMTYxNjZkMTI1Zjk5MzYzNDM1MmM4Zjg5MGM2NSIsInN1YiI6IjVkOGY5ZjBiNzliM2Q0MDAyNzhjZjI4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fkpU5z_DvJENmJ8T3rHGBtz_u71eq1WD_06RkkT4RRM"
+      "keyV3": "TMDB_KEY_V3",
+      "keyV4": "TMDB_KEY_V4"
     }
   },
   "images": {
